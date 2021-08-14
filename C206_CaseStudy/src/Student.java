@@ -44,6 +44,22 @@ public class Student {
 		this.classId = classId;
 		this.teacherName = teacherName;
 	}
+	
+	//////////add student WITH CCA constructor //////////
+	public Student(int id, String studentName, String grade, String classId, String teacherName, String parentName,
+			String email, int number, String uniqueId, String cca) {
+		super();
+		this.id = id;
+		this.studentName = studentName;
+		this.grade = grade;
+		this.classId = classId;
+		this.teacherName = teacherName;
+		this.parentName = parentName;
+		this.email = email;
+		this.number = number;
+		this.uniqueId = uniqueId;
+		this.cca = cca;
+	}
 
 	public int getId() {
 		return id;
