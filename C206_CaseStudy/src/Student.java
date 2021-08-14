@@ -12,7 +12,7 @@ public class Student {
 	
 	////////// parent register constructor //////////
 	public Student(int id, String studentName, String grade, String classId, String teacherName, String parentName,
-			String email, int number) {
+			String email, int number, String uniqueId) {
 		super();
 		this.id = id;
 		this.studentName = studentName;
@@ -25,16 +25,13 @@ public class Student {
 	}
 
 	////////// student register constructor //////////
-	public Student(int id, String studentName, String grade, String classId, String teacherName, String email,
-			int number, String uniqueId) {
+	public Student(int id, String studentName, String grade, String classId, String teacherName, String uniqueId) {
 		super();
 		this.id = id;
 		this.studentName = studentName;
 		this.grade = grade;
 		this.classId = classId;
 		this.teacherName = teacherName;
-		this.email = email;
-		this.number = number;
 		this.uniqueId = uniqueId;
 	}
 	
