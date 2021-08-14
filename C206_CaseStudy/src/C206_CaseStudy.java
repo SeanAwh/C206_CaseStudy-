@@ -167,7 +167,8 @@ public class C206_CaseStudy {
 				}
 
 			} else if (mainMenuOption == 3) { ///////////////////////////// Option 3
-				loginStudentParentMenu();
+				int loginID = 0;
+				loginStudentParent(null, loginID);
 			} else if (mainMenuOption == 4) { ///////////////////////////// Option 4
 				//int stuPrntOption = 0;
 				//while (stuPrntOption != 3) { // xixin
@@ -555,6 +556,101 @@ public class C206_CaseStudy {
 
 		}
 		return newUniqueId;
+	}
+	public static void studentParentMenu() { // Omar
+		Helper.line(30, "-");
+		System.out.println("School CCA Registration System");
+		Helper.line(30, "-");
+
+		System.out.println("1. Register for CCA");
+		System.out.println("2. View registered CCA");
+		System.out.println("3. Drop CCA");
+	
+		
+		int enteredOption = Helper.readInt("Enter an option > ");
+		
+		switch (enteredOption) {
+		case 1:
+			registerForCCA(null);
+			break;
+		case 2:
+			retrieveCCa(null, loginID);
+			break;
+		case 3:
+			dropCCa(null, loginID);
+			break;
+		default:
+			if (enteredOption != 3) {
+				System.out.println("Invalid input");
+			}
+			break;
+		}
+		
+	}
+	
+	public static void loginStudentParent(ArrayList<Student> studentList, int loginID) {
+		loginID = Helper.readInt("Enter your student ID > ");
+		String inputUID = Helper.readString("Enter CCA registration id >");
+		for (int i =0; i < studentList.size(); i++) {
+			if (studentList.get(i).getUniqueId() == inputUID ) { // loginID will come from login method
+				studentParentMenu();
+			}
+		}
+	}
+	public static void dropCCA(ArrayList<Student> studentList, int loginID) { //Omar
+		String dropCcaConfirm = Helper.readString("Do you wish to drop your CCA? y/n > ");
+		if (dropCcaConfirm.equalsIgnoreCase("y")) {
+		for (int i =0; i < studentList.size(); i++) {
+			if (studentList.get(i).getId() == loginID ) {
+				int ccaRegID = studentList.get(i).getId();
+				String ccaRegName = studentList.get(i).getStudentName();
+				String ccaRegGrade = studentList.get(i).getGrade();
+				String ccaRegClassID = studentList.get(i).getClassId();
+				String ccaRegTname = studentList.get(i).getTeacherName();
+				String ccaRegPname = studentList.get(i).getParentName();
+				int ccaRegNumber = studentList.get(i).getNumber();
+				String ccaRegUid = studentList.get(i).getUniqueId();
+				String ccaRegEmail = studentList.get(i).getEmail();
+				Student studWithCCA = new Student(ccaRegID, ccaRegName, ccaRegGrade, ccaRegClassID, ccaRegTname, ccaRegPname, ccaRegUid, ccaRegNumber, ccaRegUid, ccaRegEmail);
+				studentList.set(i,studWithCCA);
+				System.out.println("CCA was successfully dropped");
+			}
+		}
+	} else {
+		System.out.println("CCA was not dropped");
+	}
+}
+	
+	public static String retrieveCCa(ArrayList<Student> studentList, int loginID) { //Omar
+		String returnCca = "";
+		for (int i =0; i < studentList.size(); i++) {
+			if (studentList.get(i).getId() == loginID ) {
+				returnCca = studentList.get(i).getCca();
+			}else {
+				returnCca = "No CCA was registered";
+		} 
+		}
+		return returnCca;
+	}
+
+	public static void registerForCCA(ArrayList<Student> studentList) { //Omar   
+		String enteredOption = Helper.readString("What CCA do you wish to register for > ");
+		for (int i =0; i < studentList.size(); i++) {
+			if (studentList.get(i).getId() == loginID ) { // loginID will come from login method
+				int ccaRegID = studentList.get(i).getId();
+				String ccaRegName = studentList.get(i).getStudentName();
+				String ccaRegGrade = studentList.get(i).getGrade();
+				String ccaRegClassID = studentList.get(i).getClassId();
+				String ccaRegTname = studentList.get(i).getTeacherName();
+				String ccaRegPname = studentList.get(i).getParentName();
+				String ccaRegEmail = studentList.get(i).getEmail();
+				int ccaRegNumber = studentList.get(i).getNumber();
+				String ccaRegUid = studentList.get(i).getUniqueId();
+				String ccaRegCca = studentList.get(i).getCca();
+				Student studWithCCA = new Student(ccaRegID, ccaRegName, ccaRegGrade, ccaRegClassID, ccaRegTname, ccaRegPname, ccaRegEmail, ccaRegNumber, ccaRegUid, ccaRegCca);
+				studentList.set(i,studWithCCA);
+			}
+		}
 	}
 
 }
