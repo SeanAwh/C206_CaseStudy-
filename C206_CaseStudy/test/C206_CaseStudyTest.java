@@ -12,6 +12,7 @@ public class C206_CaseStudyTest {
 	private Student stud1;
 	private ArrayList<CCA> ccaList;
 	private ArrayList<Student> studentList;
+	private Student studEdit;
 
 	@Before
 	public void setUp() throws Exception {
@@ -25,6 +26,8 @@ public class C206_CaseStudyTest {
 		
 		stud1 = new Student(1,"John","P3","C206","Desmond");
 		studentList= new ArrayList<Student>();
+		
+		studEdit = new Student(1,"John","P1","C209","Mike");
 	}
 
 	@Test
@@ -160,6 +163,24 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that student inserted correctly",viewStudent,result);
 
 	}
+	
+	@Test
+	public void updateStudentDetailsTest() {// Sean
+		assertNotNull("Test if there is valid Student arraylist to update", studentList);
+
+		//normal
+		C206_CaseStudy.addStudent(studentList, stud1);
+		int studentID = 1;
+		String studentGrade = "P1";
+		String studentClass = "C209";
+		String studentTeacher = "Mike";
+		C206_CaseStudy.updateStudentDetails(studentList, studentID, studentGrade, studentClass, studentTeacher);
+		
+		assertSame("Test that student Grade updated", studentGrade, studentList.get(0).getGrade());
+		assertSame("Test that student Class updated", studentClass, studentList.get(0).getClassId());
+		assertSame("Test that student Teacher updated", studentTeacher, studentList.get(0).getTeacherName());
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 		cca1 = null;
